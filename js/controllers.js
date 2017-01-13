@@ -1,34 +1,4 @@
 //Archanaa Sathyanarayanan
-//MODULE
-var myWeatherApp = angular.module('myWeatherApp', ['ngRoute', 'ngResource']);
-
-//ROUTES
-myWeatherApp.config(function ($routeProvider) {
-   
-    $routeProvider
-    
-    .when('/', {
-        templateUrl: 'pages/home.html',
-        controller: 'mainController'
-    })
-    
-    .when('/forecast', {
-        templateUrl: 'pages/forecast.html',
-        controller: 'forecastController'
-    })
-    
-    .when('/forecast/:days', {
-        templateUrl: 'pages/forecast.html',
-        controller: 'forecastController'
-    })
-});
-
-//SERVICES
-myWeatherApp.service('forecastService', function(){
-    this.city = 'NewYork, NY';
-     
-});
-
 //CONTROLLERS
 myWeatherApp.controller('mainController', ['$scope', 'forecastService', function($scope, forecastService) {
     
@@ -62,18 +32,3 @@ myWeatherApp.controller('forecastController', ['$scope', '$resource', '$routePar
     }
     
 }]);
-
-//CUSTOM DIRECTIVE
-myWeatherApp.directive('weatherResult', function() {
-   return {
-       restrict: 'E',
-       templateUrl: 'directives/weatherResult.html',
-       replace: true,
-       scope: {
-            weatherObject: "=",
-            convertToStandard: "&",
-            convertDate: "&",
-            dateFormat: "@"
-       }
-   } 
-});
