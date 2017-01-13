@@ -18,12 +18,26 @@ myWeatherApp.config(function ($routeProvider) {
     })
 });
 
+//SERVICES
+myWeatherApp.service('forecastService', function(){
+    this.city = 'Chicago, ORD';
+     
+});
+
 //CONTROLLERS
-myWeatherApp.controller('mainController', ['$scope', function($scope) {
+myWeatherApp.controller('mainController', ['$scope', 'forecastService', function($scope, forecastService) {
+    
+    $scope.city = forecastService.city;
+    
+    $scope.$watch('city', function() {
+       forecastService.city = $scope.city; 
+    });
     
 }]);
     
 
-myWeatherApp.controller('forecastController', ['$scope', function($scope){
+myWeatherApp.controller('forecastController', ['$scope', 'forecastService',function($scope, forecastService){
+    
+    $scope.city = forecastService.city;
     
 }]);
