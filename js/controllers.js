@@ -1,12 +1,16 @@
 //Archanaa Sathyanarayanan
 //CONTROLLERS
-myWeatherApp.controller('mainController', ['$scope', 'forecastService', function($scope, forecastService) {
+myWeatherApp.controller('mainController', ['$scope', '$location', 'forecastService', function($scope, $location, forecastService) {
     
     $scope.city = forecastService.city;
     
     $scope.$watch('city', function() {
        forecastService.city = $scope.city; 
     });
+    
+    $scope.submit = function() {
+        $location.path("/forecast");
+    };
     
 }]);
     
